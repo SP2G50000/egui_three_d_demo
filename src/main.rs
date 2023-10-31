@@ -67,12 +67,12 @@ impl MyApp {
         self.angle += response.drag_delta().x * 0.01;
 
         let angle = self.angle;
-        let viewport = self.custom_3d.clone();
+        let custom_3d = self.custom_3d.clone();
 
         let callback = egui::PaintCallback {
             rect,
             callback: Arc::new(egui_glow::CallbackFn::new(move |info, _painter| {
-                viewport.lock().paint(&info, angle);
+                custom_3d.lock().paint(&info, angle);
             })),
         };
         ui.painter().add(callback);
